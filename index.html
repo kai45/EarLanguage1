@@ -222,7 +222,8 @@
     color: var(--navy);
     transition: all 0.25s;
     background: white;
-    cursor: default;
+    cursor: pointer;
+    position: relative;
   }
 
   .service-card:hover {
@@ -230,6 +231,24 @@
     border-color: var(--blue);
     transform: translateY(-3px);
     box-shadow: 0 8px 20px rgba(58,126,191,0.12);
+  }
+
+  .service-card.selected {
+    background: var(--blue);
+    border-color: var(--blue);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(58,126,191,0.3);
+  }
+
+  .service-card.selected .service-icon { filter: grayscale(0); }
+
+  .book-hint {
+    display: inline-block;
+    margin-top: 6px;
+    font-size: 0.78rem;
+    font-weight: 400;
+    opacity: 0.7;
   }
 
   .service-icon { font-size: 1.8rem; margin-bottom: 10px; display: block; }
@@ -271,6 +290,53 @@
   }
 
   .form-group { margin-bottom: 14px; }
+
+  .form-group select {
+    width: 100%;
+    padding: 14px 18px;
+    border: 1px solid var(--light-blue);
+    border-radius: var(--radius);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    color: var(--navy);
+    background: var(--sky);
+    outline: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235a7a96' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .form-group select:focus {
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px rgba(58,126,191,0.12);
+    background-color: white;
+  }
+
+  .selected-service-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--light-blue);
+    color: var(--blue);
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+
+  .selected-service-tag button {
+    background: none;
+    border: none;
+    color: var(--blue);
+    cursor: pointer;
+    font-size: 1rem;
+    line-height: 1;
+    padding: 0;
+  }
 
   .form-group input,
   .form-group textarea {
@@ -424,36 +490,36 @@
 <!-- NAV -->
 <nav>
   <a href="#" class="logo">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none">
-  <!-- Ear outline -->
-  <path d="
-    M 58 12
-    C 38 12 24 28 24 48
-    C 24 60 28 68 34 74
-    C 40 80 42 84 42 90
-    C 42 96 46 102 52 104
-    C 56 105.5 60 104 62 101
-    C 64 98 63 94 61 91
-    C 59 88 58 85 59 81
-    C 60 77 64 74 67 70
-    C 72 64 76 57 76 48
-    C 76 28 78 12 58 12 Z
-  " stroke="#333" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+	<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none">
+	  <!-- Ear outline -->
+	  <path d="
+		M 58 12
+		C 38 12 24 28 24 48
+		C 24 60 28 68 34 74
+		C 40 80 42 84 42 90
+		C 42 96 46 102 52 104
+		C 56 105.5 60 104 62 101
+		C 64 98 63 94 61 91
+		C 59 88 58 85 59 81
+		C 60 77 64 74 67 70
+		C 72 64 76 57 76 48
+		C 76 28 78 12 58 12 Z
+	  " stroke="#333" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
 
-  <!-- Inner ear canal detail -->
-  <path d="
-    M 50 60
-    C 50 56 53 52 57 52
-    C 59 52 61 53.5 61 56
-    C 61 59 59 61 58 63
-    C 57 65 57 67 58 69
-  " stroke="#333" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+	  <!-- Inner ear canal detail -->
+	  <path d="
+		M 50 60
+		C 50 56 53 52 57 52
+		C 59 52 61 53.5 61 56
+		C 61 59 59 61 58 63
+		C 57 65 57 67 58 69
+	  " stroke="#333" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
 
-  <!-- Sound waves (blue) -->
-  <path d="M 70 46 Q 75 51 70 56" stroke="#4aa8e0" stroke-width="2.8" stroke-linecap="round" fill="none"/>
-  <path d="M 74 42 Q 82 51 74 60" stroke="#4aa8e0" stroke-width="2.8" stroke-linecap="round" fill="none"/>
-  <path d="M 78 38 Q 89 51 78 64" stroke="#4aa8e0" stroke-width="2.8" stroke-linecap="round" fill="none"/>
-</svg>
+	  <!-- Sound waves (blue) -->
+	  <path d="M 70 46 Q 75 51 70 56" stroke="#4aa8e0" stroke-width="2.8" stroke-linecap="round" fill="none"/>
+	  <path d="M 74 42 Q 82 51 74 60" stroke="#4aa8e0" stroke-width="2.8" stroke-linecap="round" fill="none"/>
+	  <path d="M 78 38 Q 89 51 78 64" stroke="#4aa8e0" stroke-width="2.8" stroke-linecap="round" fill="none"/>
+	</svg>
     Ear Language
   </a>
   <ul class="nav-links">
@@ -491,12 +557,12 @@
   <h2 class="section-title">Our Services</h2>
   <p class="section-sub">Comprehensive care for your hearing and speech needs</p>
   <div class="services-grid">
-    <div class="service-card"><span class="service-icon">🦻</span>Ear Wax Removal</div>
-    <div class="service-card"><span class="service-icon">🔊</span>Hearing Tests</div>
-    <div class="service-card"><span class="service-icon">💬</span>Speech Therapy</div>
-    <div class="service-card"><span class="service-icon">📋</span>Language Assessments</div>
-    <div class="service-card"><span class="service-icon">🌊</span>Swallowing Therapy</div>
-    <div class="service-card"><span class="service-icon">🎵</span>Tinnitus Care</div>
+    <div class="service-card" onclick="selectService(this, 'Ear Wax Removal')"><span class="service-icon">🦻</span>Ear Wax Removal<span class="book-hint">Tap to book →</span></div>
+    <div class="service-card" onclick="selectService(this, 'Hearing Tests')"><span class="service-icon">🔊</span>Hearing Tests<span class="book-hint">Tap to book →</span></div>
+    <div class="service-card" onclick="selectService(this, 'Speech Therapy')"><span class="service-icon">💬</span>Speech Therapy<span class="book-hint">Tap to book →</span></div>
+    <div class="service-card" onclick="selectService(this, 'Language Assessments')"><span class="service-icon">📋</span>Language Assessments<span class="book-hint">Tap to book →</span></div>
+    <div class="service-card" onclick="selectService(this, 'Swallowing Therapy')"><span class="service-icon">🌊</span>Swallowing Therapy<span class="book-hint">Tap to book →</span></div>
+    <div class="service-card" onclick="selectService(this, 'Tinnitus Care')"><span class="service-icon">🎵</span>Tinnitus Care<span class="book-hint">Tap to book →</span></div>
   </div>
 </section>
 
@@ -515,6 +581,21 @@
   <p class="section-sub">Fill in the form and we'll be in touch shortly</p>
   <div class="contact-wrap">
     <form id="appointmentForm">
+      <div class="form-group">
+        <div id="selectedServiceTag" style="display:none;" class="selected-service-tag">
+          <span id="selectedServiceLabel"></span>
+          <button type="button" onclick="clearService()" title="Remove">✕</button>
+        </div>
+        <select name="service" id="serviceSelect" required>
+          <option value="" disabled selected>Select a service</option>
+          <option>Ear Wax Removal</option>
+          <option>Hearing Tests</option>
+          <option>Speech Therapy</option>
+          <option>Language Assessments</option>
+          <option>Swallowing Therapy</option>
+          <option>Tinnitus Care</option>
+        </select>
+      </div>
       <div class="form-group">
         <input type="text" name="name" id="name" placeholder="Your Name" required>
       </div>
@@ -559,7 +640,7 @@
         </defs>
       </svg>
     </a>
-    <a href="https://www.tiktok.com/@earlanguage?_r=1&_t=ZS-95e21IWLpjA" target="_blank" class="social-link" aria-label="TikTok">
+    <a href="https://www.tiktok.com/@earlanguage?_r=1&_t=ZS-95e21IWLpjA" class="social-link" aria-label="TikTok">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.28 8.28 0 0 0 4.84 1.54V6.78a4.85 4.85 0 0 1-1.07-.09z" fill="#000"/>
       </svg>
@@ -577,6 +658,29 @@
 
   function closeModal() {
     document.getElementById('thankYouModal').classList.remove('open');
+  }
+
+  function selectService(card, serviceName) {
+    // Deselect all cards
+    document.querySelectorAll('.service-card').forEach(c => c.classList.remove('selected'));
+    card.classList.add('selected');
+
+    // Populate the dropdown
+    const select = document.getElementById('serviceSelect');
+    select.value = serviceName;
+
+    // Show the tag
+    document.getElementById('selectedServiceLabel').textContent = serviceName;
+    document.getElementById('selectedServiceTag').style.display = 'inline-flex';
+
+    // Scroll to booking form
+    document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function clearService() {
+    document.querySelectorAll('.service-card').forEach(c => c.classList.remove('selected'));
+    document.getElementById('serviceSelect').value = '';
+    document.getElementById('selectedServiceTag').style.display = 'none';
   }
 
   const form = document.getElementById('appointmentForm');
